@@ -224,6 +224,10 @@
         };
     }
     
+    function eventName(event) {
+        return (JSYG.isMobile.any ? 'v' : '')+event;
+    }
+    
     /**
      * Déclenche le redimensionnement (évènement vmousedown)
      * @param e objet Event
@@ -297,6 +301,7 @@
         
         hasChanged = false,
         triggerDragStart = false,
+        fcts = {},
         stepsX,stepsY;
         
         if (this.type !== 'transform' && this.shape !== 'noAttribute') {
@@ -566,10 +571,7 @@
                 });
             }
             
-            new JSYG(document).off({
-                'vmousemove':mousemoveFct,
-                'vmouseup':remove
-            });
+            new JSYG(document).off(fcts);
             
             if (hasChanged) {
                 if (that.type!=='transform' && that.shape === 'noAttribute') {
@@ -591,11 +593,11 @@
         }
         
         if (that.className) { jNode.classAdd(that.className); }
+                
+        fcts[ eventName("mousemove") ] = mousemoveFct;
+        fcts[ eventName("mouseup") ] = remove;
         
-        new JSYG(document).on({
-            'vmousemove':mousemoveFct,
-            'vmouseup':remove
-        });
+        new JSYG(document).on(fcts);
         
         this.trigger('start',that.node,e);
         
@@ -614,7 +616,8 @@
         if (opt) this.set(opt);
         
         var that = this,
-        evt = opt && opt.evt;
+        evt = opt && opt.evt,
+        attachEvent = eventName("mousedown");
         
         function start(e) {
             if (that.eventWhich && e.which!=null && e.which != that.eventWhich) return;
@@ -629,13 +632,13 @@
             var field = new JSYG(this);
             field.data('resizableUnselect',this.unselectable);
             this.unselectable = 'on'; //IE
-            field.on("vmousedown",start);
+            field.on(attachEvent,start);
         });
         
         this.disable = function() {
             new JSYG(this.field).each(function() {
                 var field = new JSYG(this);
-                field.off("vmousedown",start);
+                field.off(attachEvent,start);
                 this.unselectable = field.data('resizableUnselect');
             });
             this.enabled = false;
