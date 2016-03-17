@@ -225,7 +225,7 @@
     }
     
     function eventName(event) {
-        return (JSYG.isMobile.any ? 'v' : '')+event;
+        return (JSYG.isMobile && JSYG.isMobile.any ? 'v' : '')+event;
     }
     
     /**
