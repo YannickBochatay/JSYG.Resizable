@@ -11,8 +11,6 @@
         "jsyg":"latest"
     },
     "devDependencies": {
-        "qunit": "latest",
-        "requirejs": "latest"
     },
     "repository": {
         "type": "git",

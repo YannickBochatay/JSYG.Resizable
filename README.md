@@ -4,7 +4,14 @@ Resizable plugin for JSYG framework
 ##### Demo
 [http://yannickbochatay.github.io/JSYG.Resizable/](http://yannickbochatay.github.io/JSYG.Resizable/)
 
-##### Installation
+### Installation
+
+##### with npm
+```shell
+npm install jsyg-resizable
+```
+
+##### with bower
 ```shell
 bower install jsyg-resizable
 ```
