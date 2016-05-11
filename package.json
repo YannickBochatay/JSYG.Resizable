@@ -1,6 +1,6 @@
 {
   "name": "jsyg-resizable",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Resizable plugin for JSYG framework",
   "main": "JSYG.Resizable.js",
   "directories": {
@@ -26,6 +26,6 @@
   },
   "homepage": "https://github.com/YannickBochatay/JSYG.Resizable#readme",
   "dependencies": {
-    "jsyg": "^0.6.7"
+    "jsyg": ""
   }
 }
