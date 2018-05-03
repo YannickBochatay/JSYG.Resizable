@@ -227,10 +227,6 @@
         };
     }
     
-    function eventName(event) {
-        return (JSYG.isMobile && JSYG.isMobile.any ? 'v' : '')+event;
-    }
-    
     /**
      * Déclenche le redimensionnement (évènement vmousedown)
      * @param e objet Event
@@ -597,8 +593,8 @@
         
         if (that.className) { jNode.classAdd(that.className); }
                 
-        fcts[ eventName("mousemove") ] = mousemoveFct;
-        fcts[ eventName("mouseup") ] = remove;
+        fcts.mousemove = mousemoveFct;
+        fcts.mouseup = remove;
         
         new JSYG(document).on(fcts);
         
@@ -619,8 +615,7 @@
         if (opt) this.set(opt);
         
         var that = this,
-        evt = opt && opt.evt,
-        attachEvent = eventName("mousedown");
+        evt = opt && opt.evt;
         
         function start(e) {
             if (that.eventWhich && e.which!=null && e.which != that.eventWhich) return;
@@ -635,13 +630,13 @@
             var field = new JSYG(this);
             field.data('resizableUnselect',this.unselectable);
             this.unselectable = 'on'; //IE
-            field.on(attachEvent,start);
+            field.on("mousedown",start);
         });
         
         this.disable = function() {
             new JSYG(this.field).each(function() {
                 var field = new JSYG(this);
-                field.off(attachEvent,start);
+                field.off("mousedown",start);
                 this.unselectable = field.data('resizableUnselect');
             });
             this.enabled = false;

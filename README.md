@@ -11,12 +11,6 @@ Resizable plugin for [JSYG framework](https://github.com/YannickBochatay/JSYG)
 npm install jsyg-resizable
 ```
 
-##### with bower
-```shell
-bower install jsyg-resizable
-```
-
-
 ### Example
 
 ##### HTML
